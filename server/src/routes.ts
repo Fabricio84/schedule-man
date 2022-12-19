@@ -24,8 +24,8 @@ routes.post('/auth/login', authController.authenticate);
 
 routes.get('/customers', customerController.index);
 routes.get('/customers/:id', customerController.show);
-routes.put('/customers', customerController.create);
-routes.post('/customers/:id', customerController.update);
+routes.post('/customers', customerController.create);
+routes.put('/customers/:id', customerController.update);
 routes.delete('/customers/:id', customerController.remove);
 
 routes.get('/scheduling', schedulingController.index);
@@ -33,9 +33,13 @@ routes.get('/scheduling', schedulingController.index);
 routes.get('/service-types', serviceTypeController.index);
 routes.get('/service-types/:id', serviceTypeController.show);
 routes.post('/service-types', serviceTypeController.create);
-routes.post('/service-types/:id', serviceTypeController.update);
+routes.put('/service-types/:id', serviceTypeController.update);
 routes.delete('/service-types/:id', serviceTypeController.remove);
 
 routes.get('/blocked-dates', blockedDatesController.index);
+routes.get('/blocked-dates/:id', blockedDatesController.show);
+routes.post('/blocked-dates', blockedDatesController.create);
+routes.put('/blocked-dates/:id', blockedDatesController.update);
+routes.delete('/blocked-dates/:id', blockedDatesController.remove);
 
 export default routes;

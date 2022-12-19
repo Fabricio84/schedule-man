@@ -1,72 +1,61 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-    id String @id @default(uuid())
+  id       String    @id @default(uuid())
+  email    String
+  password String
+  role     String    @default("customer")
+  customer Customer?
 
-    email    String
-    password String
-    role     String    @default("customer")
-    customer Customer?
-
-    @@map("users")
+  @@map("users")
 }
 
 model Customer {
-    id String @id @default(uuid())
+  id        String      @id @default(uuid())
+  name      String
+  phone     String?
+  userID    String      @unique
+  user      User        @relation(fields: [userID], references: [id])
+  Schedules Schedules[]
 
-    name      String
-    phone     String?
-    Schedules Schedules[]
-    user      User        @relation(fields: [userID], references: [id])
-    userID    String      @unique
-
-    @@map("customers")
+  @@map("customers")
 }
 
 model ServiceType {
-    id String @id @default(uuid())
+  id          String      @id @default(uuid())
+  description String
+  value       Decimal
+  duration    Int
+  Schedules   Schedules[]
 
-    description String
-    value       Decimal
-    duration    Int
-    Schedules   Schedules[]
-
-    @@map("service-types")
+  @@map("service-types")
 }
 
 model Schedules {
-    id String @id @default(uuid())
+  id              String      @id @default(uuid())
+  start           DateTime
+  end             DateTime
+  serviceTypeID   String
+  customerID      String
+  confirmation_at DateTime?
+  canceled_at     DateTime?
+  customer        Customer    @relation(fields: [customerID], references: [id])
+  serviceType     ServiceType @relation(fields: [serviceTypeID], references: [id])
 
-    start DateTime
-    end   DateTime
-
-    serviceType   ServiceType @relation(fields: [serviceTypeID], references: [id])
-    serviceTypeID String
-
-    customer   Customer @relation(fields: [customerID], references: [id])
-    customerID String
-
-    confirmation_at DateTime?
-    canceled_at     DateTime?
-
-    @@map("schedules")
+  @@map("schedules")
 }
 
 model BlockedDate {
-    id String @id @default(uuid())
+  id    String   @id @default(uuid())
+  start DateTime
+  end   DateTime
 
-    start DateTime
-    end   DateTime
-
-    @@map("blocked-dates")
+  @@map("blocked-dates")
 }

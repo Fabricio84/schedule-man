@@ -32,8 +32,8 @@ CREATE TABLE "schedules" (
     "customerID" TEXT NOT NULL,
     "confirmation_at" DATETIME,
     "canceled_at" DATETIME,
-    CONSTRAINT "schedules_serviceTypeID_fkey" FOREIGN KEY ("serviceTypeID") REFERENCES "service-types" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "schedules_customerID_fkey" FOREIGN KEY ("customerID") REFERENCES "customers" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "schedules_customerID_fkey" FOREIGN KEY ("customerID") REFERENCES "customers" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "schedules_serviceTypeID_fkey" FOREIGN KEY ("serviceTypeID") REFERENCES "service-types" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
