@@ -5,7 +5,8 @@
   "main": "/src/index.js",
   "scripts": {
     "test": "jest",
-    "dev": "ts-node-dev src/server.ts"
+    "dev": "ts-node-dev src/server.ts",
+    "build": "npx prisma migrate dev --name init"
   },
   "keywords": [
     "schedule"
