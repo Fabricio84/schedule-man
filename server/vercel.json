@@ -1,15 +1,4 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "npx prisma migrate dev --name init && src/server.ts",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(*.)",
-            "dest":"src/server.ts"
-        }
-    ]
+    "regions": ["lhr1"],
+    "public": false
 }

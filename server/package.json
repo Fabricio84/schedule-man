@@ -5,9 +5,7 @@
   "main": "src/server.ts",
   "type": "module",
   "scripts": {
-    "test": "jest",
-    "dev": "ts-node-dev src/server.ts",
-    "build": "npx prisma migrate dev --name init"
+    "postinstall": "prisma generate"
   },
   "keywords": [
     "schedule"
