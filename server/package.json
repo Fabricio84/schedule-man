@@ -2,7 +2,8 @@
   "name": "schedule-man-server",
   "version": "1.0.0",
   "description": "server of app schedule manager",
-  "main": "/src/server.ts",
+  "main": "src/server.ts",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "dev": "ts-node-dev src/server.ts",
